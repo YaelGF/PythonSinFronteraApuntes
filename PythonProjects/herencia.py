@@ -1,36 +1,31 @@
-from telnetlib import GA
-
-
-class Animales:
-    def __init__(self,nombre, onomatopeya):
+class Animal:
+    def __init__(self, nombre, onomatopeya):
         self.nombre = nombre
         self.onomatopeya = onomatopeya
 
-    def saludos(self):
-        print("Hola mi nombre es", self.nombre)
+    def saludo(self):
+        print('Hola, soy un ', self.tipo, ' y mi sonido es el ', self.onomatopeya)
 
-class Gato(Animales):
-    def maullar(self):
-        print(self.onomatopeya)
+class Gato(Animal):
+    tipo = "gato"
+    def __init__(self, nombre, onomatopeya):
+        Animal.__init__(self, nombre, onomatopeya)
+        print('Hola soy un gato extendido')
 
-class Perro(Animales):
-    def auyar(self):
-        print(self.onomatopeya)
+class Perro(Animal):
+    tipo = "perro"
+    def __init__(self, nombre, onomatopeya):
+        super().__init__(nombre, onomatopeya)
+        print("instanciando un perro")
 
-class Pajaro(Animales):
-    def birriar(self):
-        print(self.onomatopeya)
+class Canario(Animal):
+    tipo = "canario"
 
+gato = Gato("Fluffy", "maullido")
+gato.saludo()
 
-gato = Gato("Felipe","Miau")
-perro = Perro("Loky","Guau")
-pajaro = Pajaro("Piolin", "FIU")
+perro = Perro('Firulais', 'ladrido')
+perro.saludo()
 
-gato.saludos()
-gato.maullar()
-
-perro.saludos()
-perro.auyar()
-
-pajaro.saludos()
-pajaro.birriar()
+canario = Canario("Piolin", "silvido")
+canario.saludo()
